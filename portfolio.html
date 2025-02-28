@@ -321,6 +321,34 @@
                 closeModal();
             }
         }
+        <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+
+  const firebaseConfig = {
+   apiKey: "AIzaSyB6KSHDOkYpzZAzcddisoliGu3P20OTYBA",
+  authDomain: "portfolio-49796.firebaseapp.com",
+  projectId: "portfolio-49796",
+  storageBucket: "portfolio-49796.firebasestorage.app",
+  messagingSenderId: "304630425540",
+  appId: "1:304630425540:web:2d12f0d158200cd3402691",
+  measurementId: "G-R8HT78C79H"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+
+  function loginUser(email, password) {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        console.log("User Logged In: ", userCredential.user);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
+</script>
+
     </script>
 </body>
 </html>
