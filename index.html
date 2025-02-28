@@ -3,143 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MR SS - Web Design & Development</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Animated Portfolio Entry</title>
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            text-align: center;
-            background-color: #0d0d0d;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #111;
             color: white;
-            scroll-behavior: smooth;
+            overflow: hidden;
         }
-        .hero {
-            padding: 100px 20px;
-            background: linear-gradient(135deg, #ff7eb3, #ff758c);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            animation: fadeIn 1.5s ease-in-out;
+
+        .entry-screen {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: #000;
+            z-index: 9999;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+
+        .box {
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            transform: translateY(100%);
+            transition: transform 1s ease-in-out;
         }
-        .hero h1 {
+
+        .red { background: red; }
+        .white { background: white; }
+        .black { background: black; }
+
+        .text {
+            position: absolute;
+            text-align: center;
             font-size: 3rem;
             font-weight: bold;
-        }
-        .hero p {
-            font-size: 1.2rem;
-            margin-top: 10px;
-        }
-        .projects .project-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            padding: 40px;
-        }
-        .projects .project-item {
-            padding: 30px;
-            background-color: #222;
-            border-radius: 15px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(255, 120, 150, 0.3);
-        }
-        .projects .project-item:hover {
-            transform: scale(1.1);
-            background-color: #333;
-        }
-        .contact form {
-            display: flex;
-            flex-direction: column;
-            max-width: 500px;
-            margin: auto;
-        }
-        .contact input, .contact textarea {
-            margin: 10px 0;
-            padding: 15px;
-            border-radius: 8px;
-            border: none;
-            background: #222;
-            color: white;
-            font-size: 1rem;
-        }
-        .contact button {
-            padding: 15px;
-            background-color: #ff758c;
-            border: none;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: background 0.3s, transform 0.2s;
-            font-size: 1rem;
-        }
-        .contact button:hover {
-            background-color: #ff5a7c;
-            transform: scale(1.05);
-        }
-        .cta {
-            margin-top: 50px;
-            padding: 20px;
-            background: linear-gradient(135deg, #ff758c, #ff7eb3);
-            font-size: 1.5rem;
-            font-weight: bold;
             color: #fff;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: transform 0.3s;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
         }
-        .cta:hover {
-            transform: scale(1.1);
+
+        .main-content {
+            display: none;
+            text-align: center;
+            margin-top: 100px;
+        }
+        #text2 {
+            color: black;  /* 🖤 Font color black */
         }
     </style>
 </head>
 <body>
-    <header class="hero">
-        <h1>Build Stunning Websites with MR SS</h1>
-        <p>Professional & Creative Web Design Solutions</p>
-    </header>
-    
-    <section class="about">
-        <h2>About Me</h2>
-        <p>Transforming ideas into stunning, responsive web experiences.</p>
-    </section>
-    
-    <section class="projects">
-        <h2>My Work</h2>
-        <div class="project-list">
-            <div class="project-item">🔥 Premium Website Design</div>
-            <div class="project-item">⚡ Speed-Optimized Landing Pages</div>
-            <div class="project-item">🎨 Stunning UI/UX Creations</div>
-        </div>
-    </section>
-    
-    <section class="instagram">
-        <h2>Follow My Work on Instagram</h2>
-        <a href="https://www.instagram.com/cook_with_ss__" target="_blank" style="color: #ff758c; text-decoration: none; font-weight: bold;">@cook_with_ss__</a>
-    </section>
-    
-    <section class="contact">
-        <h2>Hire Me</h2>
-        <form id="contact-form">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <textarea name="message" placeholder="Your Requirements" required></textarea>
-            <button type="submit">Let's Work Together</button>
-        </form>
-    </section>
-    
-    <div class="cta" onclick="window.location.href='https://www.instagram.com/cocking_with_ss__'">
-        DM Me on Instagram for Custom Orders! 🚀
+
+    <div class="entry-screen">
+        <div class="box red"></div>
+        <h1 class="text" id="text1">Welcome</h1>
+
+        <div class="box white"></div>
+        <h1 class="text" id="text2">To My </h1>
+
+        <div class="box black"></div>
+        <h1 class="text" id="text3">Portfolio</h1>
     </div>
+
     
+
     <script>
-        document.querySelector("#contact-form").addEventListener("submit", function(event) {
-            event.preventDefault();
-            alert("Thank you for your message! Let's create something amazing.");
+        document.addEventListener("DOMContentLoaded", () => {
+            setTimeout(() => {
+                document.querySelector(".red").style.transform = "translateY(0)";
+                setTimeout(() => {
+                    document.querySelector("#text1").style.opacity = "1";
+                    
+                    setTimeout(() => {
+                        document.querySelector(".white").style.transform = "translateY(0)";
+                        setTimeout(() => {
+                            document.querySelector("#text2").style.opacity = "1";
+                            
+                            setTimeout(() => {
+                                document.querySelector(".black").style.transform = "translateY(0)";
+                                setTimeout(() => {
+                                    document.querySelector("#text3").style.opacity = "1";
+                                    
+                                    setTimeout(() => {
+                                        document.querySelector(".entry-screen").style.transition = "1s";
+                                        document.querySelector(".entry-screen").style.transform = "translateY(-100%)";
+                                        
+                                        setTimeout(() => {
+                                            document.querySelector(".entry-screen").style.display = "none";
+                                            document.querySelector(".main-content").style.display = "block";
+                                        }, 1000);
+                                        
+                                    }, 1000);
+                                }, 1000);
+                            }, 1000);
+                        }, 1000);
+                    }, 1000);
+                }, 1000);
+            }, 1000);
         });
+        setTimeout(() => {
+            window.location.href = "portfolio.html";
+        }, 7000);
     </script>
+
 </body>
 </html>
