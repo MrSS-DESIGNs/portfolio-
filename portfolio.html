@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional web design and development services by MR SS. Creating stunning, responsive websites with modern technologies.">
+    <meta property="og:title" content="MR SS - Professional Web Design & Development">
+    <meta property="og:description" content="Transform your ideas into exceptional digital experiences with our web solutions.">
+    <title>MR SS | Web Design & Development</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+    <style>
+        :root {
+            --primary: #f44f6b;
+            --secondary: #f1468d;
+            --dark: #0d0d0d;
+            --gray: #222;
+            --light: #ffffff;
+            --accent: #007bff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .skip-link {
+            position: absolute;
+            left: -10000px;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+
+        .skip-link:focus {
+            position: static;
+            width: auto;
+            height: auto;
+            padding: 1rem;
+            background: var(--primary);
+            color: white;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            text-align: center;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .section {
+            padding: 5rem 2rem;
+            scroll-margin-top: 2rem;
+        }
+
+        .project-card {
+            background: var(--gray);
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            transition: 0.5s;
+        }
+
+        .project-card:hover::before {
+            animation: shine 1.5s;
+        }
+
+        @keyframes shine {
+            0% { transform: rotate(45deg) translateX(-150%); }
+            100% { transform: rotate(45deg) translateX(150%); }
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            background: var(--gray);
+            border: 2px solid transparent;
+            border-radius: 0.5rem;
+            color: var(--light);
+            transition: border-color 0.3s ease;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: var(--gray);
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: center;
+            max-width: 500px;
+        }
+
+        @media (max-width: 768px) {
+            html {
+                font-size: 14px;
+            }
+            
+            .section {
+                padding: 3rem 1rem;
+            }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-primary { background-color: var(--accent); }
+        .btn-secondary { background-color: #6c757d; }
+        
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .toggle-theme {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px;
+            border: none;
+            background: var(--gray);
+            color: var(--light);
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+
+        .toggle-theme:hover { background: var(--primary); }
+
+        .dark-mode {
+            background: #ffffff;
+            color: #000000;
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="hero">
+        <h1 class="text-4xl font-bold mb-4 animate-slide-in">Crafting Digital Excellence</h1>
+        <p class="text-xl opacity-90">Web Design & Development  by MR SS</p>
+        <div class="mt-8 flex gap-4">
+            <button 
+                onclick="location.href='#contact'" 
+                style="padding: 12px 24px; font-size: 16px; border: none; border-radius: 6px; background-color: #007bff; color: white; cursor: pointer; transition: background 0.3s;">
+                Start Project
+            </button>
+        
+            <button 
+                onclick="location.href='#portfolio'" 
+                style="padding: 12px 24px; font-size: 16px; border: none; border-radius: 6px; background-color: #6c757d; color: white; cursor: pointer; transition: background 0.3s;">
+                View Work
+            </button>
+        </div>
+        
+    </header>
+
+    <main id="main-content">
+        <section id="about" class="section">
+            <h2 class="section-title">About My Expertise</h2>
+            <p class="max-w-3xl mx-auto">With a focus on user-centric design and cutting-edge development practices, I create web solutions that drive results. Combining technical excellence with creative vision to deliver exceptional digital experiences.</p>
+        </section>
+
+        <section id="portfolio" class="section bg-dark-800">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                <article class="project-card">
+                    <h3 class="text-xl font-semibold mb-2">Premium Web Design</h3>
+                    <p>Custom-tailored websites with focus on brand identity and user experience</p>
+                </article>
+                <article class="project-card">
+                    <h3 class="text-xl font-semibold mb-2">High-Performance Solutions</h3>
+                    <p>Optimized web applications built for speed and scalability</p>
+                </article>
+                <article class="project-card">
+                    <h3 class="text-xl font-semibold mb-2">UI/UX Mastery</h3>
+                    <p>Intuitive interfaces that engage and convert visitors</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <h2 class="section-title">Start Your Project</h2>
+            <form class="contact-form max-w-xl mx-auto">
+                <div class="form-group">
+                    <label for="name" class="sr-only">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="sr-only">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message" class="sr-only">Message</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Project Details" required></textarea>
+                </div>
+                <button type="submit" class="btn-primary w-full">Send Proposal Request</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 py-8 text-center">
+        <div class="social-links flex justify-center gap-4 mb-4">
+            <a href="https://www.instagram.com/cocking_with_ss__" target="_blank" rel="noopener noreferrer" aria-label="Instagram Profile">
+                <i class="fab fa-instagram text-2xl hover:text-primary transition-colors"></i>
+            </a>
+        </div>
+        <p class="text-gray-400">&copy; 2023 MR SS. All rights reserved.</p>
+    </footer>
+
+    <div id="success-modal" class="modal">
+        <div class="modal-content">
+            <h3 class="text-2xl font-bold mb-4">Thank You! 🎉</h3>
+            <p>Your message has been received. I'll respond within 24 hours.</p>
+            <button onclick="closeModal()" class="btn-primary mt-4">Continue</button>
+        </div>
+    </div>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+        document.querySelectorAll("button").forEach(button => {
+            button.addEventListener("mouseover", () => {
+                button.style.backgroundColor = "#0056b3"; // Darker blue on hover
+            });
+            button.addEventListener("mouseout", () => {
+                button.style.backgroundColor = button.textContent === "Start Project" ? "#007bff" : "#6c757d"; 
+            });
+        });
+
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            showModal();
+            this.reset();
+        });
+
+        function showModal() {
+            document.getElementById('success-modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('success-modal').style.display = 'none';
+        }
+
+        // Close modal on outside click
+        window.onclick = function(event) {
+            const modal = document.getElementById('success-modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
