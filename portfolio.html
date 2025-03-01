@@ -23,6 +23,8 @@
             --accent: #c89600;     /* Dark Gold for Highlights */
             --text: #ffffff;
         }
+        
+        
 
         * {
             margin: 0;
@@ -199,6 +201,7 @@
             background: #ffffff;
             color: #000000;
         }
+        
     </style>
 </head>
 <body>
@@ -206,17 +209,17 @@
 
     <header class="hero">
         <h1 class="text-4xl font-bold mb-4 animate-slide-in">Crafting Digital Excellence</h1>
-        <p class="text-xl opacity-90">Web Design & Development  by MR SS</p>
+        <p class="text-xl opacity-90"style="color: black">Web Design & Development  by MR SS</p>
         <div class="mt-8 flex gap-4">
             <button 
                 onclick="location.href='#contact'" 
-                style="padding: 12px 24px; font-size: 16px; border: none; border-radius: 6px; background-color: #007bff; color: white; cursor: pointer; transition: background 0.3s;">
+                style="padding: 12px 24px; font-size: 16px; border: none; border-radius: 6px; background-color: #007bff; color: white; cursor: pointer; transition: background 0.3s;margin-top: 10px">
                 Start Project
             </button>
         
             <button 
                 onclick="location.href='#portfolio'" 
-                style="padding: 12px 24px; font-size: 16px; border: none; border-radius: 6px; background-color: #6c757d; color: white; cursor: pointer; transition: background 0.3s;">
+                style="padding: 12px 24px; font-size: 16px; border: none; border-radius: 6px; background-color: #6c757d; color: white; cursor: pointer; transition: background 0.3s;margin-top: 10px">
                 View Work
             </button>
         </div>
@@ -267,7 +270,7 @@
         </section>
     </main>
 
-   <footer class="bg-gray-900 py-8 text-center flex flex-col items-center justify-center">
+    <footer class="bg-gray-900 py-8 text-center flex flex-col items-center justify-center">
         <div class="social-links flex justify-center gap-4 mb-4">
             <a href="https://www.instagram.com/cocking_with_ss__" target="_blank" rel="noopener noreferrer" aria-label="Instagram Profile">
                 <i class="fab fa-instagram" style="font-size: 40px; display: block; text-align: center;"></i>
@@ -288,6 +291,7 @@
     </div>
 
     <script>
+        
         function toggleDarkMode() {
             document.body.classList.toggle('dark-mode');
         }
@@ -321,34 +325,30 @@
                 closeModal();
             }
         }
-        <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-  import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
-
-  const firebaseConfig = {
-   apiKey: "AIzaSyB6KSHDOkYpzZAzcddisoliGu3P20OTYBA",
-  authDomain: "portfolio-49796.firebaseapp.com",
-  projectId: "portfolio-49796",
-  storageBucket: "portfolio-49796.firebasestorage.app",
-  messagingSenderId: "304630425540",
-  appId: "1:304630425540:web:2d12f0d158200cd3402691",
-  measurementId: "G-R8HT78C79H"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-
-  function loginUser(email, password) {
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        console.log("User Logged In: ", userCredential.user);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-  }
-</script>
-
+        document.getElementById("contactForm").addEventListener("submit", function(e) {
+            e.preventDefault(); 
+        
+            let formData = {
+                name: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                message: document.getElementById("message").value
+            };
+        
+            fetch("C:\Users\Tausif Shaikh\Desktop\Instagram\portfolio-\app.py", { // Backend ka actual link yaha dalna
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message); 
+            })
+            .catch(error => console.error("Error:", error));
+        });
+        
+            
     </script>
 </body>
 </html>
